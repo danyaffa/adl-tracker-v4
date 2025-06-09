@@ -1,1 +1,24 @@
+# Ignore environment variable files
+.env
+.env.local
+.env.development
+.env.production
 
+# Ignore node_modules and build output
+node_modules/
+.next/
+out/
+
+# Ignore logs and system files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Ignore local Vercel/Netlify settings
+.vercel/
+.netlify/
+
+# Ignore IDE settings
+.vscode/
+.idea/
