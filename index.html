@@ -720,74 +720,6 @@ ABN 90124089345 pending).
 </div>
 </div>
 <!-- AI AD GENERATOR MODAL -->
-<div class="modal" id="ai-modal">
-<div class="bg-white rounded-2xl max-w-3xl w-full mx-4 p-8">
-<div class="flex justify-between items-center mb-6">
-<h3 class="text-2xl font-bold text-gray-900">🤖 AI Ad Generator</h3>
-<button class="text-gray-400 hover:text-gray-600 text-2xl font-bold" onclick="closeModal('ai-modal')">×</button>
-</div>
-<form class="space-y-6" id="ai-form">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2">Product/Service *</label>
-<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-purple-500 focus:outline-none" id="ai-product" placeholder="E-commerce Store" required="" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2">Target Keywords *</label>
-<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-purple-500 focus:outline-none" id="ai-keywords" placeholder="buy online, best deals" required="" type="text"/>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2">Target Audience *</label>
-<input name="country" placeholder="Enter your country" style="width:100%;padding:0.5rem;margin-bottom:1rem;" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-bold text-gray-700 mb-2">Special Offer</label>
-<select class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-purple-500 focus:outline-none" id="ai-offer" multiple="multiple" style="width:100%;padding:0.5rem;margin-bottom:1rem;">
-<option value="">No Special Offer</option>
-<option value="50% Off">50% Off</option>
-<option value="Free Shipping">Free Shipping</option>
-<option value="Limited Time">Limited Time Offer</option>
-<option value="Free Trial">Free Trial</option>
-<option value="Money Back Guarantee">Money Back Guarantee</option>
-</select>
-</div>
-</div>
-<button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-xl font-bold text-lg transition-colors" type="submit">
-                🤖 Generate AI Ad Copy
-            </button>
-</form>
-<div class="mt-8" id="ai-results" style="display: none;">
-<div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200">
-<h4 class="text-xl font-bold text-purple-800 mb-4">🎯 AI-Generated Content</h4>
-<div class="space-y-4">
-<div>
-<label class="block text-sm font-bold text-purple-700 mb-2">Headline:</label>
-<div class="bg-white p-4 rounded-xl border font-bold text-lg" id="ai-headline"></div>
-</div>
-<div>
-<label class="block text-sm font-bold text-purple-700 mb-2">Description:</label>
-<div class="bg-white p-4 rounded-xl border" id="ai-description"></div>
-</div>
-<div>
-<label class="block text-sm font-bold text-purple-700 mb-2">ADL Tracking Code:</label>
-<div class="flex justify-between items-center mb-2">
-<span class="text-sm text-purple-600">✅ Ready to use in your ads</span>
-<button class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-purple-700" onclick="copyAICode()">
-                                📋 Copy Code
-                            </button>
-</div>
-<div class="adl-code" id="ai-adl-code"></div>
-</div>
-<button class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold transition-colors" onclick="createCampaignFromAI()">
-                        ✅ Create Campaign with This Ad
-                    </button>
-</div>
-</div>
-</div>
-</div>
-</div>
 <!-- FIXED BOTTOM ADS STRIP -->
 <div class="fixed bottom-0 left-0 right-0 z-30 bg-white border-t-4 border-blue-500 shadow-2xl" id="ads-strip">
 <div class="max-w-7xl mx-auto px-6 py-4">
@@ -1740,5 +1672,73 @@ document.addEventListener('DOMContentLoaded', function() {
   </button>
 <p style="font-size:0.9rem;color:#777;">(PayPal ID securely embedded: AQ9Z_b27DGHqF2...)</p>
 </section>
-</body>
+
+<div class="modal" id="ai-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;">
+<div style="background:#fff;margin:10% auto;padding:20px;border-radius:8px;max-width:500px;position:relative;">
+<span onclick="document.getElementById('ai-modal').style.display='none'" style="position:absolute;top:10px;right:20px;cursor:pointer;font-size:1.5rem;">×</span>
+<h2>AI Ad Generator</h2>
+<input id="ai-product" placeholder="Product/Service" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;" type="text"/>
+<input id="ai-target" placeholder="Target Audience" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;" type="text"/>
+<input id="ai-keywords" placeholder="Target Keywords" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;" type="text"/><div id="ai-suggestions" style="margin-top: 1rem; padding: 0.75rem; border: 1px dashed #999; background: #f9f9f9; color: #333;">💡 AI Suggested Keywords will appear here...</div>
+<select id="ai-offer" multiple="" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;">
+<option value="50% Off">50% Off</option>
+<option value="Buy One Get One">Buy One Get One</option>
+<option value="Free Delivery">Free Delivery</option>
+<option value="Limited Time">Limited Time</option>
+</select>
+<button onclick="generateAIAd()" style="padding:0.75rem;width:100%;background:#007bff;color:white;border:none;border-radius:4px;">Generate Ad</button>
+<div id="ai-result" style="margin-top:1rem;background:#f9f9f9;padding:0.75rem;border-radius:4px;"></div>
+</div>
+</div>
+<script>
+async function fetchAIKeywords() {
+  const product = document.getElementById('ai-product')?.value.trim();
+  const audience = document.getElementById('ai-target')?.value.trim();
+  const keywords = document.getElementById('ai-keywords')?.value.trim();
+  const output = document.getElementById('ai-suggestions');
+
+  if (!product || !audience || !keywords || !output) return;
+
+  output.innerHTML = "⏳ Generating suggestions...";
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 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"
+      },
+      body: JSON.stringify({
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: "You are a digital marketing expert that suggests high-converting, SEO-friendly keywords for ads and organic search visibility."
+          },
+          {
+            role: "user",
+            content: `Suggest 10 SEO and ad-friendly keywords for a product called "${product}" targeting "${audience}". The user also provided: ${keywords}`
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+    const aiReply = data.choices[0].message.content;
+    output.innerHTML = "💡 AI Suggested Keywords:<br><em>" + aiReply.replace(/\n/g, "<br>") + "</em>";
+  } catch (err) {
+    output.innerHTML = "❌ Failed to load suggestions. Check API key or connection.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const productField = document.getElementById("ai-product");
+  const targetField = document.getElementById("ai-target");
+  const keywordField = document.getElementById("ai-keywords");
+
+  [productField, targetField, keywordField].forEach(el => {
+    el?.addEventListener("blur", fetchAIKeywords);
+  });
+});
+</script></body>
 </html>
