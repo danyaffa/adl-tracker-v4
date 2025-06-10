@@ -1,0 +1,141 @@
+<div class="modal" id="upgrade-modal">
+<div class="bg-white rounded-2xl max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+<div class="p-8 border-b">
+<div class="flex justify-between items-center">
+<div>
+<h2 class="text-3xl font-bold text-gray-900">⭐ Upgrade Your Plan</h2>
+<p class="text-gray-600 mt-2">Choose the plan that fits your business needs</p>
+</div>
+<button class="text-gray-400 hover:text-gray-600 text-3xl font-bold" onclick="closeModal('upgrade-modal')">×</button>
+</div>
+</div>
+<div class="p-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- STARTER PLAN -->
+<div class="pricing-card border-2 border-green-300">
+<div class="text-center mb-6">
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Starter Plan</h3>
+<div class="text-5xl font-bold text-green-600 mb-1">$10</div>
+<div class="text-gray-600">per month</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">5 campaigns maximum</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">10 AI generations/month</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Universal tracking</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Basic analytics</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Email support</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Fraud protection</span>
+</div>
+</div>
+<button class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg transition-colors" onclick="selectPlan('starter', 10)">
+                        🚀 Choose Starter
+                    </button>
+</div>
+<!-- PRO PLAN -->
+<div class="pricing-card popular border-2 border-blue-500">
+<div class="text-center mb-6">
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Pro Plan</h3>
+<div class="text-5xl font-bold text-blue-600 mb-1">$29</div>
+<div class="text-gray-600">per month</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Unlimited campaigns</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Unlimited AI generations</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Advanced analytics suite</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Split testing tools</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Email automation</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Priority support</span>
+</div>
+</div>
+<button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg transition-colors" onclick="selectPlan('pro', 29)">
+                        🚀 Upgrade to Pro
+                    </button>
+</div>
+<!-- ENTERPRISE PLAN -->
+<div class="pricing-card border-2 border-purple-300">
+<div class="text-center mb-6">
+<h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise Plan</h3>
+<div class="text-5xl font-bold text-purple-600 mb-1">$99</div>
+<div class="text-gray-600">per month</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Everything in Pro</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">White-label options</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">API access</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Custom integrations</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Dedicated support</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="text-green-500 text-xl">✓</span>
+<span class="font-medium">Custom training</span>
+</div>
+</div>
+<button class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-lg text-white py-4 rounded-xl font-bold text-lg transition-all" onclick="selectPlan('enterprise', 99)">
+                        👑 Upgrade to Enterprise
+                    </button>
+</div>
+</div>
+<!-- Security Notice -->
+<div class="mt-8 p-6 bg-green-50 rounded-xl border border-green-200">
+<div class="flex items-center space-x-3 mb-3">
+<span class="text-2xl">🔒</span>
+<h4 class="text-lg font-bold text-green-800">Secure Payment Processing</h4>
+</div>
+<div class="text-green-700 space-y-1">
+<p>✅ 256-bit SSL encryption for all transactions</p>
+<p>✅ PCI DSS compliant payment processing</p>
+<p>✅ Powered by Stripe for maximum security</p>
+<p>✅ Cancel anytime, no hidden fees</p>
+</div>
+</div>
+</div>
+</div>
+</div>

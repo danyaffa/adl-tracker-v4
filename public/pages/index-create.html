@@ -1,0 +1,44 @@
+<form class="space-y-6" id="account-form">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-bold text-gray-700 mb-2">First Name *</label>
+<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none" id="first-name" placeholder="John" required="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-gray-700 mb-2">Last Name *</label>
+<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none" id="last-name" placeholder="Smith" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-bold text-gray-700 mb-2">Email Address *</label>
+<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none" id="account-email" placeholder="john@example.com" required="" type="email"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-gray-700 mb-2">Company Name (Optional)</label>
+<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none" id="company-name" placeholder="My Business" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-gray-700 mb-2">Password *</label>
+<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none" id="account-password" placeholder="Create secure password" required="" type="password"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-gray-700 mb-2">Confirm Password *</label>
+<input class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none" id="confirm-password" placeholder="Confirm password" required="" type="password"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-gray-700 mb-2">Country *</label>
+<input name="country" placeholder="Enter your country" style="width:100%;padding:0.5rem;margin-bottom:1rem;" type="text"/>
+</div>
+<div class="flex items-center space-x-3">
+<input class="w-5 h-5" id="account-terms" required="" type="checkbox"/>
+<label class="text-sm font-medium text-gray-700" for="account-terms">
+                    I agree to the Terms of Service, Privacy Policy, and Content Guidelines
+                </label>
+</div>
+<button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-lg transition-colors" type="submit">
+                📝 Create Account &amp; Proceed to Payment
+            </button>
+<button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl font-medium transition-colors" onclick="closeModal('account-modal')" type="button">
+                Cancel
+            </button>
+<button class="bg-yellow-500 text-black px-4 py-2 mt-4 rounded" onclick="window.open('https://www.sandbox.paypal.com/pay?hosted_button_id=YOUR_BUTTON_ID', '_blank')">Pay with PayPal (Sandbox)</button><button class="bg-yellow-500 text-black px-4 py-2 mt-4 rounded" onclick="window.open('https://www.sandbox.paypal.com/pay?hosted_button_id=YOUR_BUTTON_ID', '_blank')">Pay with PayPal (Sandbox)</button></form>
