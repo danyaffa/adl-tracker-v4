@@ -1,24 +1,17 @@
-# Ignore environment variable files
+# Node.js
+node_modules/
 .env
 .env.local
-.env.development
-.env.production
+.env.*.local
 
-# Ignore node_modules and build output
-node_modules/
-.next/
-out/
-
-# Ignore logs and system files
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# OS
 .DS_Store
 
-# Ignore local Vercel/Netlify settings
-.vercel/
-.netlify/
-
-# Ignore IDE settings
+# IDEs
 .vscode/
 .idea/
