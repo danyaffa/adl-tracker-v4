@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADL Tracker v4 – Ad Data Logic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/ADL_logo.png" />
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <img src="/ADL_logo.png" alt="ADL Logo" class="h-12" />
+    <nav class="space-x-4">
+      <button onclick="openAIModal()" class="text-blue-600 font-semibold hover:underline">AI Generator</button>
+      <a href="#" class="text-sm text-gray-700">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- Main Dashboard -->
+  <main class="max-w-5xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">ADL Tracker v4 – Campaign Intelligence Hub</h1>
+    <section class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">Create New Campaign</h2>
+        <form class="space-y-3">
+          <input class="w-full border p-2 rounded" placeholder="Ad Title" required />
+          <textarea class="w-full border p-2 rounded" placeholder="Ad Description" required></textarea>
+          <input class="w-full border p-2 rounded" placeholder="Target Platform(s)" />
+          <input class="w-full border p-2 rounded" placeholder="Target Age Group(s)" />
+          <input class="w-full border p-2 rounded" placeholder="Target Country" />
+          <input class="w-full border p-2 rounded" placeholder="Main Keywords" />
+          <button class="bg-green-600 text-white px-4 py-2 rounded">Submit</button>
+        </form>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">Ad Performance Snapshot</h2>
+        <ul class="text-sm space-y-1">
+          <li><strong>ROAS:</strong> 3.5x</li>
+          <li><strong>CTR:</strong> 7.2%</li>
+          <li><strong>Impressions:</strong> 15,240</li>
+          <li><strong>Conversions:</strong> 658</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- AI Modal -->
+  <div id="aiModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded w-full max-w-md relative">
+      <button id="closeAIModal" class="absolute top-2 right-2 text-2xl font-bold text-gray-500">×</button>
+      <h2 class="text-xl font-semibold mb-4">AI Ad Keyword Generator</h2>
+      <input id="ai-product" class="w-full border p-2 mb-2" placeholder="Product" type="text" />
+      <input id="ai-audience" class="w-full border p-2 mb-2" placeholder="Target Audience" type="text" />
+      <input id="ai-keywords" class="w-full border p-2 mb-2" placeholder="Keywords" type="text" />
+      <button onclick="fetchAIKeywords()" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Generate</button>
+      <div id="ai-output" class="mt-4 text-sm text-gray-800 whitespace-pre-wrap"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white mt-16 p-4 text-center text-sm text-gray-600 border-t">
+    © 2025 Universal Lifestyle Pty Ltd · ABN 90124089345 · ACN 124089345 · Sydney, Australia
+  </footer>
+
+  <script>
+    const modal = document.getElementById("aiModal");
+    const closeBtn = document.getElementById("closeAIModal");
+    if (modal && closeBtn) {
+      closeBtn.addEventListener("click", () => modal.classList.add("hidden"));
+    }
+    function openAIModal() {
+      modal.classList.remove("hidden");
+    }
+
+    async function fetchAIKeywords() {
+      const product = document.getElementById("ai-product").value.trim();
+      const audience = document.getElementById("ai-audience").value.trim();
+      const keywords = document.getElementById("ai-keywords").value.trim();
+      const output = document.getElementById("ai-output");
+
+      if (!product || !audience || !keywords) {
+        output.innerHTML = "⚠️ All fields are required.";
+        return;
+      }
+
+      output.innerHTML = "⏳ Generating...";
+      try {
+        const response = await fetch("/api/ai-keywords", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ product, audience, keywords })
+        });
+        const data = await response.json();
+        output.innerHTML = data.result || "⚠️ No response received.";
+      } catch (err) {
+        output.innerHTML = `❌ Error: ${err.message}`;
+      }
+    }
+  </script>
+</body>
+</html>
